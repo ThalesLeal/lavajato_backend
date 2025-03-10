@@ -1,15 +1,22 @@
-Projeto Lavajato Backend
+# Projeto Lavajato Backend
+
 Este projeto é um sistema em Django para gerenciamento de agendamentos de lavagem. Ele utiliza o Django REST Framework, JWT para autenticação, filtros, tracking e outras dependências para construir uma API robusta.
 
-Pré-requisitos
-Python 3.9 ou superior
-PostgreSQL (ou outro banco de dados, com as devidas alterações nas configurações)
-Git
-Estrutura do Projeto
+---
+
+## Pré-requisitos
+
+- **Python 3.9** ou superior  
+- **PostgreSQL** (ou outro banco de dados, com as devidas alterações nas configurações)  
+- **Git**
+
+---
+
+## Estrutura do Projeto
+
 A estrutura do projeto (exemplo):
 
-bash
-Copiar
+```
 lavajato-backend2.0/
 ├── app/
 │   ├── models.py             # Modelos: Veiculo, Funcionario, Lavagem
@@ -17,62 +24,71 @@ lavajato-backend2.0/
 │   ├── views.py              # ViewSets: LavagemViewSet, FuncionarioViewSet
 │   └── ...
 ├── auth/
-│   └── views.py              # (Exemplo) UserInfoView para autenticação
+│   └── views.py              # UserInfoView (para autenticação)
 ├── config/
-│   └── urls.py               # Configuração das URLs
+│   └── urls.py               # Configuração das URLs do projeto
 ├── common/
-│   └── endpoints.js          # (Opcional) Arquivo usado pelo front-end
+│   └── endpoints.js          # (Opcional) Arquivo de endpoints usado pelo front-end
 ├── manage.py
 └── requirements.txt
-Passo a Passo para Configuração do Back-End
-1. Clonar o Repositório
+```
+
+---
+
+## Passo a Passo para Configuração do Back-End
+
+### Passo 1: Clone o Repositório
+
 Abra o terminal e execute:
 
-bash
-Copiar
-git clone https://seurepositorio.git
+```bash
+git clone https://github.com/SEU_USUARIO/lavajato-backend2.0.git
 cd lavajato-backend2.0
-2. Criar e Ativar o Ambiente Virtual
-Crie um ambiente virtual usando o venv:
+```
 
-bash
-Copiar
-python -m venv env
-Ative o ambiente virtual:
+### Passo 2: Crie e Ative o Ambiente Virtual
 
-No Windows:
+Recomendamos o uso de um ambiente virtual para isolar as dependências do projeto. Execute os seguintes comandos:
 
-bash
-Copiar
-env\Scripts\activate
-No macOS/Linux:
+```bash
+# Instale o virtualenv, se ainda não estiver instalado
+pip install virtualenv
 
-bash
-Copiar
+# Crie um ambiente virtual (você pode substituir "env" pelo nome desejado)
+python3 -m venv env
+
+# Ative o ambiente virtual:
+# No macOS/Linux:
 source env/bin/activate
-3. Instalar as Dependências
-Com o ambiente virtual ativado, instale as dependências listadas no arquivo requirements.txt:
+# No Windows:
+# env\Scripts\activate
+```
 
-bash
-Copiar
+### Passo 3: Instale as Dependências Python
+
+Com o ambiente virtual ativado, instale as dependências listadas no arquivo `requirements.txt`:
+
+```bash
 pip install -r requirements.txt
-Exemplo de conteúdo do requirements.txt:
+```
 
-txt
-Copiar
-Django==4.1.7
-djangorestframework==3.15.2
-django-filter==22.1
-djangorestframework-simplejwt==5.2.2
-drf-tracking==1.5.0
-psycopg2-binary==2.9.6
-python-decouple==3.8
-django-cors-headers==3.13.0
-4. Configurar Variáveis de Ambiente
-Crie um arquivo .env na raiz do projeto com as variáveis necessárias. Um exemplo:
+> **Exemplo de requirements.txt:**
+> ```
+> Django==4.1.7
+> djangorestframework==3.15.2
+> django-filter==22.1
+> djangorestframework-simplejwt==5.2.2
+> drf-tracking==1.5.0
+> psycopg2-binary==2.9.6
+> python-decouple==3.8
+> django-cors-headers==3.13.0
+> ```
 
-env
-Copiar
+### Passo 4: Configure as Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto com base no exemplo abaixo:
+
+```env
 SECRET_KEY=your-secret-key
 DEBUG=True
 
@@ -84,53 +100,68 @@ DB_HOST=localhost
 DB_PORT=5432
 
 # Outras variáveis, se necessário
-O projeto utiliza o pacote python-decouple para ler essas variáveis. Certifique-se de que o arquivo .env esteja na raiz do projeto.
+```
 
-5. Realizar as Migrações do Banco de Dados
+> **Observação:**  
+> O projeto utiliza o pacote **python-decouple** para ler essas variáveis.
+
+### Passo 5: Realize as Migrações do Banco de Dados
+
 Crie as migrações e aplique-as:
 
-bash
-Copiar
+```bash
 python manage.py makemigrations
 python manage.py migrate
-6. Criar um Superusuário
-Crie um superusuário para acessar o admin do Django:
+```
 
-bash
-Copiar
+### Passo 6: Crie um Superusuário
+
+Crie um superusuário para acessar o painel administrativo do Django:
+
+```bash
 python manage.py createsuperuser
+```
+
 Siga as instruções para definir nome de usuário, e-mail e senha.
 
-7. Executar o Servidor de Desenvolvimento
+### Passo 7: Execute o Servidor de Desenvolvimento
+
 Inicie o servidor:
 
-bash
-Copiar
+```bash
 python manage.py runserver
+```
+
 Acesse:
+- **Aplicação:** [http://localhost:8000/](http://localhost:8000/)
+- **Admin do Django:** [http://localhost:8000/admin/](http://localhost:8000/admin/)
 
-Aplicação: http://localhost:8000/
-Admin do Django: http://localhost:8000/admin/
-8. Testar os Endpoints da API
-Agendamentos de Lavagem:
-A URL padrão será: http://localhost:8000/api/lavagens/
-Use ferramentas como Postman ou cURL para testar requisições GET, POST, etc.
+### Passo 8: Teste os Endpoints da API
 
-Funcionários:
-A URL padrão será: http://localhost:8000/api/funcionarios/
+- **Agendamentos de Lavagem:**  
+  URL padrão: [http://localhost:8000/api/lavagens/](http://localhost:8000/api/lavagens/)
 
-Autenticação JWT:
-Utilize as rotas:
+- **Funcionários:**  
+  URL padrão: [http://localhost:8000/api/funcionarios/](http://localhost:8000/api/funcionarios/)
 
-http://localhost:8000/api/token/ para obter o token.
-http://localhost:8000/api/token/refresh/ para renovar o token.
-Observações Adicionais
-Configuração do Banco de Dados:
-Se você deseja usar outro banco de dados além do PostgreSQL, ajuste as configurações no arquivo de settings.py.
+- **Autenticação JWT:**  
+  - Obter token: [http://localhost:8000/api/token/](http://localhost:8000/api/token/)  
+  - Renovar token: [http://localhost:8000/api/token/refresh/](http://localhost:8000/api/token/refresh/)
 
-Estrutura dos Endpoints:
-As rotas são geradas via DefaultRouter. Verifique o arquivo config/urls.py para confirmar se as rotas estão corretas.
+---
 
-Organização dos Arquivos:
-Se mover pastas como auth ou common, ajuste as importações nos arquivos de URL e nas demais views.
+## Observações Adicionais
 
+- **Configuração do Banco de Dados:**  
+  Se desejar utilizar outro banco de dados além do PostgreSQL, ajuste as configurações no arquivo **settings.py**.
+
+- **Endpoints e Rotas:**  
+  As rotas são geradas via DefaultRouter no arquivo **config/urls.py**. Se você reorganizar pastas como **auth** ou **common**, ajuste as importações correspondentes.
+
+- **Ambiente Virtual:**  
+  Sempre ative o ambiente virtual antes de executar os comandos do Django.
+
+- **Documentação:**  
+  Consulte a [documentação do Django](https://docs.djangoproject.com/en/4.1/) e do [Django REST Framework](https://www.django-rest-framework.org/) para mais detalhes e melhores práticas.
+
+---
